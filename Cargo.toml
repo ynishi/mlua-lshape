@@ -2,7 +2,7 @@
 name = "mlua-lshape"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.75"
+rust-version = "1.77"
 authors = ["Yutaka Nishimura"]
 license = "MIT OR Apache-2.0"
 description = "mlua wrapper for lshape — Schema-as-Data validator + LuaCATS codegen, Pure Lua vendored via include_str!."
@@ -17,12 +17,10 @@ include = [
     "lua/**/*.lua",
     "Cargo.toml",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE-MIT",
     "LICENSE-APACHE",
 ]
 
 [dependencies]
-mlua = { version = "0.10", features = ["lua54", "vendored"] }
-
-[dev-dependencies]
-mlua = { version = "0.10", features = ["lua54", "vendored"] }
+mlua = { version = "0.11", features = ["lua54", "vendored", "send"] }

@@ -35,8 +35,9 @@ same pattern is used by
 ## Vendored sources
 
 `lua/lshape/*.lua` is a verbatim copy of the upstream
-[ynishi/lshape](https://github.com/ynishi/lshape) repository. Refresh
-via:
+[ynishi/lshape](https://github.com/ynishi/lshape) repository, pinned to
+**v0.1.0**. See [`CHANGELOG.md`](./CHANGELOG.md) for the embedded
+surface. Refresh via:
 
 ```bash
 cp /path/to/lshape/lshape/*.lua lua/lshape/
@@ -46,21 +47,13 @@ The `LSHAPE_SOURCES` public constant exposes the embedded sources
 (`&[(name, src)]`) for downstream consumers that want to inject them
 into another Lua VM or hash them for drift checks.
 
+## Lua version
+
+This crate pins `mlua` to `lua54` + `vendored`, matching the sibling
+`mlua-*` crates (`mlua-probe`, `mlua-lspec`, `mlua-check`). Other Lua
+versions are not currently supported.
+
 ## License
 
-Dual-licensed under either of
-
-- Apache License, Version 2.0 ([LICENSE-APACHE](./LICENSE-APACHE) or
-  <http://www.apache.org/licenses/LICENSE-2.0>)
-- MIT license ([LICENSE-MIT](./LICENSE-MIT) or
-  <http://opensource.org/licenses/MIT>)
-
-at your option. The vendored `lua/lshape/` files are dual-licensed under
-the same terms, copyright Yutaka Nishimura.
-
-### Contribution
-
-Unless you explicitly state otherwise, any contribution intentionally
-submitted for inclusion in the work by you, as defined in the Apache-2.0
-license, shall be dual-licensed as above, without any additional terms
-or conditions.
+MIT OR Apache-2.0. The vendored `lua/lshape/` files are dual-licensed
+under the same terms, copyright Yutaka Nishimura.
