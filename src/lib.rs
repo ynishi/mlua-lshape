@@ -32,9 +32,9 @@ use mlua::{Lua, Result, Table, Value};
 /// Kept `pub` so downstream crates can embed the same sources (e.g. to
 /// inject them into a non-mlua Lua VM or to hash them for drift checks).
 pub const LSHAPE_SOURCES: &[(&str, &str)] = &[
-    ("lshape",         include_str!("../lua/lshape/init.lua")),
-    ("lshape.t",       include_str!("../lua/lshape/t.lua")),
-    ("lshape.check",   include_str!("../lua/lshape/check.lua")),
+    ("lshape", include_str!("../lua/lshape/init.lua")),
+    ("lshape.t", include_str!("../lua/lshape/t.lua")),
+    ("lshape.check", include_str!("../lua/lshape/check.lua")),
     ("lshape.reflect", include_str!("../lua/lshape/reflect.lua")),
     ("lshape.luacats", include_str!("../lua/lshape/luacats.lua")),
 ];
@@ -53,9 +53,7 @@ pub fn install(lua: &Lua) -> Result<()> {
         let name_owned = (*name).to_owned();
         let src_owned = (*src).to_owned();
         let loader = lua.create_function(move |lua, ()| -> Result<Value> {
-            let chunk = lua
-                .load(&src_owned)
-                .set_name(&format!("@{}", name_owned));
+            let chunk = lua.load(&src_owned).set_name(format!("@{}", name_owned));
             chunk.eval::<Value>()
         })?;
         preload.set(*name, loader)?;
@@ -113,11 +111,11 @@ mod tests {
         lua.load(
             r#"
             local lshape = require("lshape")
-            assert(lshape._VERSION == "0.1.0",
-                "expected lshape._VERSION == '0.1.0', got " .. tostring(lshape._VERSION))
+            assert(lshape._VERSION == "0.2.0",
+                "expected lshape._VERSION == '0.2.0', got " .. tostring(lshape._VERSION))
 
             local T = lshape.t
-            -- v0.1.0 surface smoke: any_of, pattern, partial, literal
+            -- v0.2.0 surface smoke: any_of, pattern, partial, literal, fn
             local U = T.any_of({ T.string, T.number })
             assert(lshape.check.check("x", U))
             assert(lshape.check.check(1, U))
@@ -134,6 +132,10 @@ mod tests {
             local L = T.literal("yes")
             assert(lshape.check.check("yes", L))
             assert(not (lshape.check.check("no", L)))
+
+            -- v0.2.0 added: T.fn primitive (function type)
+            assert(lshape.check.check(function() end, T.fn))
+            assert(not (lshape.check.check(123, T.fn)))
             "#,
         )
         .exec()

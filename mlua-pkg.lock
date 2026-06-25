@@ -1,0 +1,8 @@
+version = 1
+
+[[pkg]]
+name = "lshape"
+source = "git+https://github.com/ynishi/lshape"
+tag = "v0.2.0"
+sha = "aece689dcf410b2adbcd85bdf5a392610a1e7140"
+entry = "lshape"

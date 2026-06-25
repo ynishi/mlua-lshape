@@ -36,11 +36,12 @@ function combinators:describe(doc)
     return setmetatable({ kind = "described", inner = self, doc = doc }, schema_mt)
 end
 
-M.string  = setmetatable({ kind = "prim", prim = "string" },  schema_mt)
-M.number  = setmetatable({ kind = "prim", prim = "number" },  schema_mt)
-M.boolean = setmetatable({ kind = "prim", prim = "boolean" }, schema_mt)
-M.table   = setmetatable({ kind = "prim", prim = "table" },   schema_mt)
-M.any     = setmetatable({ kind = "any" },                    schema_mt)
+M.string  = setmetatable({ kind = "prim", prim = "string" },   schema_mt)
+M.number  = setmetatable({ kind = "prim", prim = "number" },   schema_mt)
+M.boolean = setmetatable({ kind = "prim", prim = "boolean" },  schema_mt)
+M.table   = setmetatable({ kind = "prim", prim = "table" },    schema_mt)
+M.fn      = setmetatable({ kind = "prim", prim = "function" }, schema_mt)
+M.any     = setmetatable({ kind = "any" },                     schema_mt)
 
 --- T.shape(fields, opts) — named key set.
 ---

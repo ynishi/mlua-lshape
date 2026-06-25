@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-06-25
+
+Embeds [lshape v0.2.0](https://github.com/ynishi/lshape/releases/tag/v0.2.0).
+
+### Added
+
+- Vendored upstream lshape v0.2.0:
+  - `T.fn` — function-type primitive.
+- Vendoring is now reproducible via `mlua-pkg.toml` + `mlua-pkg.lock`
+  (mlua-pkg v0.5.0+).  The manifest pins `tag = "v0.2"` (SemVer prefix)
+  so future patch releases auto-resolve, while the lockfile records the
+  concrete tag (`v0.2.0`) and commit SHA for reproducibility.
+- `target_dir = "lua/lshape"` keeps the vendored copy under git, so
+  `cargo build` continues to work without running `mlua-pkg install`
+  first; running `install` simply re-syncs from the upstream tag.
+
+### Changed
+
+- `_VERSION` smoke test asserts `"0.2.0"` and exercises the new `T.fn`
+  primitive in addition to the existing v0.1.0 surface.
+
 ## [0.1.0] - 2026-04-21
 
 Initial public release. mlua wrapper that installs the
