@@ -5,3 +5,4 @@ Cargo.lock
 .mcp.json
 .mlua-pkgs
 workspace
+.mlua-pkgs
