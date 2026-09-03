@@ -3,6 +3,6 @@ version = 1
 [[pkg]]
 name = "lshape"
 source = "git+https://github.com/ynishi/lshape"
-tag = "v0.2.0"
-sha = "aece689dcf410b2adbcd85bdf5a392610a1e7140"
+tag = "v0.3.0"
+sha = "135946790268d51ebbe6f86507722054a8c6ed69"
 entry = "lshape"

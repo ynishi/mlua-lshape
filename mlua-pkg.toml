@@ -1,6 +1,6 @@
 [package]
 name = "mlua-lshape"
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
-lshape = { git = "https://github.com/ynishi/lshape", tag = "v0.2", entry = "lshape", target_dir = "lua/lshape" }
+lshape = { git = "https://github.com/ynishi/lshape", tag = "v0.3", entry = "lshape", target_dir = "lua/lshape" }

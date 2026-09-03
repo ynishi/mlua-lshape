@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-09-03
+
+Embeds [lshape v0.3.0](https://github.com/ynishi/lshape/releases/tag/v0.3.0).
+
+### Added
+
+- Vendored upstream lshape v0.3.0:
+  - `T.integer` — whole-number primitive (`2.0` passes, `2.5` / NaN /
+    ±inf fail).
+  - `T.tuple(items)` — fixed-length positional array with per-position
+    schemas.
+  - Bounds combinators `:min` / `:max` / `:min_len` / `:max_len` —
+    numeric value and `#`-length bounds folded into one `bounded` node.
+- `vendored_version_matches` smoke extended with the v0.3.0 surface
+  (integer / tuple / bounds accept + reject paths).
+
+### Changed
+
+- `mlua-pkg.toml` tag pin `v0.2` → `v0.3` (lockfile records `v0.3.0`,
+  commit `1359467`).
+
 ## [0.2.0] - 2026-06-25
 
 Embeds [lshape v0.2.0](https://github.com/ynishi/lshape/releases/tag/v0.2.0).

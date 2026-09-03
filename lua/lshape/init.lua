@@ -20,7 +20,7 @@
 
 local M = {}
 
-M._VERSION = "0.2.0"
+M._VERSION = "0.3.0"
 
 M.t       = require("lshape.t")
 M.check   = require("lshape.check")

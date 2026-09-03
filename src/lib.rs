@@ -111,8 +111,8 @@ mod tests {
         lua.load(
             r#"
             local lshape = require("lshape")
-            assert(lshape._VERSION == "0.2.0",
-                "expected lshape._VERSION == '0.2.0', got " .. tostring(lshape._VERSION))
+            assert(lshape._VERSION == "0.3.0",
+                "expected lshape._VERSION == '0.3.0', got " .. tostring(lshape._VERSION))
 
             local T = lshape.t
             -- v0.2.0 surface smoke: any_of, pattern, partial, literal, fn
@@ -136,6 +136,25 @@ mod tests {
             -- v0.2.0 added: T.fn primitive (function type)
             assert(lshape.check.check(function() end, T.fn))
             assert(not (lshape.check.check(123, T.fn)))
+
+            -- v0.3.0 surface smoke: integer, tuple, bounds
+            assert(lshape.check.check(3, T.integer))
+            assert(not (lshape.check.check(3.5, T.integer)))
+
+            local Pair = T.tuple({ T.string, T.number })
+            assert(lshape.check.check({ "a", 1 }, Pair))
+            assert(not (lshape.check.check({ "a" }, Pair)))
+            assert(not (lshape.check.check({ "a", 1, true }, Pair)))
+
+            local Age = T.number:min(0):max(150)
+            assert(lshape.check.check(30, Age))
+            assert(not (lshape.check.check(-1, Age)))
+            assert(not (lshape.check.check(151, Age)))
+
+            local Name = T.string:min_len(1):max_len(4)
+            assert(lshape.check.check("ab", Name))
+            assert(not (lshape.check.check("", Name)))
+            assert(not (lshape.check.check("abcde", Name)))
             "#,
         )
         .exec()

@@ -36,11 +36,12 @@ same pattern is used by
 
 `lua/lshape/*.lua` is a verbatim copy of the upstream
 [ynishi/lshape](https://github.com/ynishi/lshape) repository, pinned to
-**v0.1.0**. See [`CHANGELOG.md`](./CHANGELOG.md) for the embedded
-surface. Refresh via:
+**v0.3.0** via `mlua-pkg.toml` (SemVer-prefix tag pin) + `mlua-pkg.lock`
+(concrete tag + commit SHA). See [`CHANGELOG.md`](./CHANGELOG.md) for
+the embedded surface. Refresh via:
 
 ```bash
-cp /path/to/lshape/lshape/*.lua lua/lshape/
+just vendor   # mlua-pkg install — re-syncs lua/lshape from the pinned tag
 ```
 
 The `LSHAPE_SOURCES` public constant exposes the embedded sources
